@@ -1,4 +1,4 @@
-# TWO준캐리조의  gameproject schedule
+# TWO준캐리조_  gameproject schedule
 5월 2일 ~ 5일 pygame 공부기간
 
 5월 2일)
