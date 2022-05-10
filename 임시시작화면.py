@@ -6,13 +6,13 @@ pygame.init()
 
 white = (255, 255, 255)
 
-titleImg = pygame.image.load("/Users/junhuckjung/Desktop/시작화면/title.png")
-startImg = pygame.image.load("/Users/junhuckjung/Desktop/시작화면/starticon.png")
-quitImg = pygame.image.load("/Users/junhuckjung/Desktop/시작화면/quiticon.png")
+titleImg = pygame.image.load("/Users/junhuckjung/Desktop/시작화면/title.png") # 아직 os를 사용안해서 직접 자신의 이미지 파일 경로를 입력해야함
+startImg = pygame.image.load("/Users/junhuckjung/Desktop/시작화면/starticon.png") # 아직 os를 사용안해서 직접 자신의 이미지 파일 경로를 입력해야함
+quitImg = pygame.image.load("/Users/junhuckjung/Desktop/시작화면/quiticon.png") # 아직 os를 사용안해서 직접 자신의 이미지 파일 경로를 입력해야함
 clickStartImg = pygame.image.load(
-    "/Users/junhuckjung/Desktop/시작화면/clickedStartIcon.png")
+    "/Users/junhuckjung/Desktop/시작화면/clickedStartIcon.png") # 아직 os를 사용안해서 직접 자신의 이미지 파일 경로를 입력해야함
 clickQuitImg = pygame.image.load(
-    "/Users/junhuckjung/Desktop/시작화면/clickedQuitIcon.png")
+    "/Users/junhuckjung/Desktop/시작화면/clickedQuitIcon.png") # 아직 os를 사용안해서 직접 자신의 이미지 파일 경로를 입력해야함
 
 display_width = 800
 display_height = 600
