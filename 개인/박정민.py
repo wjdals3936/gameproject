@@ -1,5 +1,6 @@
 import pygame
 
+
 # 1. 게임 초기화
 pygame.init()
 
@@ -9,11 +10,30 @@ size = [640, 480]   # size변수는 창의 크기를 리스트 형태로 저장�
 # screen변수 저장 #그리기 단계에 screen변수에 그림 집어 넣을 예정
 screen = pygame.display.set_mode(size)
 
-title = "My Game"   # 제목 표시줄 설정
+title = "icreamgame"   # 제목 표시줄 설정
 pygame.display.set_caption(title)   # 창의 크기와 제목 저장
 
 # 3. 게임 내 필요한 설정 - 여러 변수들 지정
 clock = pygame.time.Clock()  # 시계를 설정하여 나중에 FPS기능 이용
+
+counter, text = 180, '180'.rjust(3)
+pygame.time.set_timer(pygame.USEREVENT, 1000)
+font = pygame.font.SysFont('Consolas', 30)
+
+run = True
+while run:
+    for e in pygame.event.get():
+        if e.type == pygame.USEREVENT:
+            counter -= 1
+            text = str(counter).rjust(3) if counter > 0 else 'boom!'
+        if e.type == pygame.QUIT:
+            run = False
+
+    screen.fill((255, 255, 255))
+    #screen.size((40, 30))
+    screen.blit(font.render(text, True, (0, 0, 0)), (32, 48))
+    pygame.display.flip()
+    clock.tick(60)
 
 
 class obj:
