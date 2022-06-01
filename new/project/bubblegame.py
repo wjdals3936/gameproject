@@ -1,43 +1,37 @@
 # 게임 종료 처리
 # 성공 : 화면 내에 모든 버블이 사라지면 성공
 # 실패 : 바닥에 어떤 정해진 높이보다 버블이 낮게 내려오면 실패
+import time
+import sys
 import os
 import random
 import math
+from turtle import width
 import pygame
 
 # button class
 
 
-class Button():
-    def __init__(self, x, y, image, scale):
-        width = image.get_width()
-        height = image.get_height()
-        self.image = pygame.transform.scale(
-            image, (int(width * scale), int(height * scale)))
-        self.rect = self.image.get_rect()
-        self.rect.topleft = (x, y)
-        self.clicked = False
+class Button:
+    def __init__(self, img_in, x, y, width, height, img_act, x_act, y_act, action=None):
+        mouse = pygame.mouse.get_pos()
+        click = pygame.mouse.get_pressed()
+        if x + width > mouse[0] > x and y + height > mouse[1] > y:
+            screen.blit(img_act, (x_act, y_act))
+            if click[0] and action != None:
+                time.sleep(1)
+                action()
+        else:
+            screen.blit(img_in, (x, y))
 
-    def draw(self, surface):
-        action = False
-        # get mouse position
-        pos = pygame.mouse.get_pos()
 
-        # check mouseover and clicked conditions
-        if self.rect.collidepoint(pos):
-            if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
-                self.clicked = True
-                action = True
+def quitgame():
+    pygame.quit()
+    sys.exit()
 
-        if pygame.mouse.get_pressed()[0] == 0:
-            self.clicked = False
 
-        # draw button on screen
-        surface.blit(self.image, (self.rect.x, self.rect.y))
-
-        return action
-
+def change_state(k):
+    k = 1
 
 # 버블 클래스 생성
 
@@ -433,13 +427,15 @@ wall = pygame.image.load(os.path.join(current_path, "wall.png"))
 
 # 타이틀 이미지 불러오기
 title = pygame.image.load(os.path.join(current_path, "title.png"))
-# 시작화면 버튼
-start_img = pygame.image.load('start_btn.png').convert_alpha()
-exit_img = pygame.image.load('exit_btn.png').convert_alpha()
 
-# create button instances
-start_button = Button(100, 600, start_img, 0.3)
-exit_button = Button(300, 600, exit_img, 0.3)
+# 시작화면 버튼
+startImg = pygame.image.load(os.path.join(current_path, "starticon.png"))
+quitImg = pygame.image.load(os.path.join(current_path, "quiticon.png"))
+clickStartImg = pygame.image.load(
+    os.path.join(current_path, "clickedStartIcon.png"))
+clickQuitImg = pygame.image.load(
+    os.path.join(current_path, "clickedQuitIcon.png"))
+
 
 # 버블 이미지 불러오기
 bubble_images = [  # 버블이 색깔이 다양하므로 리스트로 만듦
@@ -504,6 +500,9 @@ is_game_over = False  # 게임종료변수
 game_font = pygame.font.SysFont("arialrounded", 40)  # 게임 종료 시 문구
 game_result = None  # 게임 결과
 game_state = False
+global j
+j = 2
+change = 3
 
 map = []  # 빈 리스트로 맵 선언
 visited = []  # 버블이 방문한 위치 기록
@@ -516,11 +515,11 @@ while running:
     screen.fill((202, 228, 241))
     screen.blit(title, (0, 0))
 
-    if start_button.draw(screen):
-        game_state = True
+    startButton = Button(startImg, 100, 600, 60, 20,
+                         clickStartImg, 103, 603, None)
 
-    if exit_button.draw(screen):
-        running = False
+    quitButton = Button(quitImg, 300, 600, 60, 20,
+                        clickQuitImg, 303, 603, quitgame)
 
     for event in pygame.event.get():  # 발생하는 모든 이벤트를 받음
         if event.type == pygame.QUIT:  # 종료버튼구현
@@ -541,6 +540,21 @@ while running:
                 to_angle_left = 0
             elif event.key == pygame.K_RIGHT:
                 to_angle_right = 0
+
+    mouse = pygame.mouse.get_pos()
+    click = pygame.mouse.get_pressed()
+    x = 100
+    width = 60
+    y = 600
+    height = 20
+    if x + width > mouse[0] > x and y + height > mouse[1] > y:
+        if click[0]:
+            time.sleep(1)
+            change = 1
+
+    if change == 1:
+        game_state = True
+
     if game_state == True:
         if not curr_bubble:  # 지금 쏠 버블이 없으면
             prepare_bubbles()  # 버블을 준비해라
