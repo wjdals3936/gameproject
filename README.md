@@ -29,16 +29,6 @@
 ---- Gamestart 클래스</br>
 ---- 함수</br>
  	init()</br>
-	quest() -- random 약 25개 정도</br>
-	check() -- quest와 비교하여 count</br>
-	endmenu()</br>
-	timer()</br>
-	sale()</br>
-	Hp()</br>
-	cup&con()</br>
-	
-	//consumer() -- 말풍선//</br>
-	//saleman() -- 말풍선//</br>
 	
 	
-게임 종료 화면 -- 맞춘 스코어, 다시하기, 종료</br>
+게임 종료 화면 -- game over 문구 띄우기, 다시하기, 종료</br>
