@@ -404,10 +404,8 @@ def change_bubble_image(image):  # 게임 종료 시 버블색 바꾸기
 
 
 def display_game_over():  # 게임 종료 시 문구 설정
-    txt_game_over = game_font.render(game_result, True, WHITE)  # 문구, 색상
-    rect_game_over = txt_game_over.get_rect(
-        center=(screen_width // 2, screen_height // 2))  # 화면 중앙에 위치
-    screen.blit(txt_game_over, rect_game_over)
+    # 화면 중앙에 위치
+    screen.blit(ending_Img, (0, 0))
 
 
 pygame.init()
@@ -427,6 +425,10 @@ wall = pygame.image.load(os.path.join(current_path, "wall.png"))
 
 # 타이틀 이미지 불러오기
 title = pygame.image.load(os.path.join(current_path, "title.png"))
+
+# 종료 이미지 불러오기
+ending_Img = pygame.image.load(os.path.join(current_path, "ending_img.png"))
+
 
 # 시작화면 버튼
 startImg = pygame.image.load(os.path.join(current_path, "starticon.png"))
