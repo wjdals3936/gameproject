@@ -405,7 +405,10 @@ def change_bubble_image(image):  # 게임 종료 시 버블색 바꾸기
 
 def display_game_over():  # 게임 종료 시 문구 설정
     # 화면 중앙에 위치
-    screen.blit(ending_Img, (0, 0))
+    if game_result == 0:
+        screen.blit(ending_Img, (0, 0))
+    if game_result == 1:
+        screen.blit(sucess_Img, (0, 0))
 
 
 pygame.init()
@@ -428,7 +431,7 @@ title = pygame.image.load(os.path.join(current_path, "title.png"))
 
 # 종료 이미지 불러오기
 ending_Img = pygame.image.load(os.path.join(current_path, "ending_img.png"))
-
+sucess_Img = pygame.image.load(os.path.join(current_path, "sucess_img.png"))
 
 # 시작화면 버튼
 startImg = pygame.image.load(os.path.join(current_path, "starticon.png"))
@@ -517,11 +520,11 @@ while running:
     screen.fill((202, 228, 241))
     screen.blit(title, (0, 0))
 
-    startButton = Button(startImg, 100, 600, 60, 20,
-                         clickStartImg, 103, 603, None)
+    startButton = Button(startImg, 90, 600, 60, 20,
+                         clickStartImg, 93, 603, None)
 
-    quitButton = Button(quitImg, 300, 600, 60, 20,
-                        clickQuitImg, 303, 603, quitgame)
+    quitButton = Button(quitImg, 290, 600, 60, 20,
+                        clickQuitImg, 293, 603, quitgame)
 
     for event in pygame.event.get():  # 발생하는 모든 이벤트를 받음
         if event.type == pygame.QUIT:  # 종료버튼구현
@@ -545,7 +548,7 @@ while running:
 
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
-    x = 100
+    x = 90
     width = 60
     y = 600
     height = 20
@@ -572,10 +575,10 @@ while running:
 #   score_live = score_live + 2  # 버블 한개 당 2점
 
         if not bubble_group:
-            game_result = "Mission Complete"  # 게임 성공 시 문구
+            game_result = 1  # 게임 성공 시 문구
             is_game_over = True  # 게임 성공 시
         elif get_lowest_bubble_bottom() > len(map) * CELL_SIZE:  # 가장 바닥에 있는 버블이 맵의 높이보다 커지면
-            game_result = "Game Over"  # 게임 실패 시 문구
+            game_result = 0  # 게임 실패 시 문구
             is_game_over = True  # 게임 종료 처리
         # 게임 종료시 버블 이미지 리스트 가장 마지막 black으로 바꿈
             change_bubble_image(bubble_images[-1])
