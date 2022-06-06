@@ -431,7 +431,7 @@ title = pygame.image.load(os.path.join(current_path, "title.png"))
 
 # 종료 이미지 불러오기
 ending_Img = pygame.image.load(os.path.join(current_path, "ending_img.png"))
-sucess_Img = pygame.image.load(os.path.join(current_path, "sucess_img.png"))
+sucess_Img = pygame.image.load(os.path.join(current_path, "success_img.png"))
 
 # 시작화면 버튼
 startImg = pygame.image.load(os.path.join(current_path, "starticon.png"))
