@@ -416,7 +416,7 @@ screen_width = 448  # 길이
 screen_height = 720  # 높이
 screen = pygame.display.set_mode(
     (screen_width, screen_height))  # 튜플형태로 화면 설정, screen으로 받음
-pygame.display.set_caption("Puzzle Bobble")  # 게임제목
+pygame.display.set_caption("Bubble Game")  # 게임제목
 clock = pygame.time.Clock()  # 변수 설정
 
 # 배경 이미지 불러오기
